@@ -20,13 +20,11 @@ const createBtn = document.querySelector('.makeBoard');
 body.append(container, btnDiv);
 btnDiv.appendChild(create);
 
-let boardSize;
-let squareSize;
 
 create.addEventListener('click', () => {
-        boardSize = prompt('Enter desired squares up to 100: ');
-        area = 640 / boardSize;
-        perimeter = boardSize * boardSize;
+        let boardSize = prompt('Enter desired squares up to 100: ');
+        let perimeter = 640 / boardSize;
+        let area = boardSize * boardSize;
 
         if (boardSize == null || boardSize == undefined || isNaN(boardSize)) {
             alert('Please enter a correct response!');
@@ -34,9 +32,9 @@ create.addEventListener('click', () => {
         }
 
         if (!isNaN(boardSize) && boardSize <= 100 && boardSize > 0) {
-            for (i = 0; i < perimeter; i++) {
+            for (i = 0; i < area; i++) {
                 let square = document.createElement('div');
-                square.setAttribute('style', `width: ${area}px; height: ${area}px; background-color: plum; border: solid lime 1px; box-sizing: border-box;`);
+                square.setAttribute('style', `width: ${perimeter}px; height: ${perimeter}px; background-color: plum; border: solid lime 1px; box-sizing: border-box;`);
                 container.appendChild(square);
             }
         } else {
