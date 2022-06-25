@@ -11,6 +11,7 @@ btnDiv.classList.add('btn');
 
 create.textContent = 'How Big?';
 
+container.setAttribute('style', `height: 640px; width: 640px;`);
 
 const selectContainer = document.querySelector('.board');
 const btnContainer = document.querySelector('.btn');
@@ -23,16 +24,24 @@ let boardSize;
 let squareSize;
 
 create.addEventListener('click', () => {
-        boardSize = prompt('Enter one integer for your square Etch and Sketch: ');
-        container.setAttribute('style', `height: ${boardSize}px; width: ${boardSize}px;`);
-        // squareSize = boardSize / 10;
+        boardSize = prompt('Enter desired squares up to 100: ');
+        area = 640 / boardSize;
+        perimeter = boardSize * boardSize;
 
-        if (!isNaN(boardSize)) {
-            for (i = 0; i <= boardSize; i++) {
+        if (boardSize == null || boardSize == undefined || isNaN(boardSize)) {
+            alert('Please enter a correct response!');
+            return; 
+        }
+
+        if (!isNaN(boardSize) && boardSize <= 100 && boardSize > 0) {
+            for (i = 0; i < perimeter; i++) {
                 let square = document.createElement('div');
-                // square.setAttribute('style', `height: ${squareSize}px; width: ${squareSize}px; background-color: blue;`);
+                square.setAttribute('style', `width: ${area}px; height: ${area}px; background-color: plum; border: solid lime 1px; box-sizing: border-box;`);
                 container.appendChild(square);
             }
+        } else {
+            alert(`${boardSize} is too high or not a positive integer!`);
+            return;
         }
 });
 
